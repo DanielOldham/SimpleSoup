@@ -5,11 +5,52 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Django Scraper</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-{% for link in data %}
-    {{ link.name }} --------> {{ link.address }}<br>
-{% endfor %}
+    <div class="row mt-3">
+        <div class="col-8 mx-2">
+            <h1>Link Collector</h1>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-8 mx-2">
+            <form method="POST" action="/">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <input class="form-control" type="text" name="site" id="site" placeholder="site address">
+                    <button class="btn btn-primary" type="submit">Scrape</button>
+                    <a class="btn btn-warning" href="/delete">Delete</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for link in data %}
+                    <tr>
+                        <td>{{ link.id }}</td>
+                        <td>{{ link.name }}</td>
+                        <td>{{ link.address }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
