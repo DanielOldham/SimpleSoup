@@ -8,8 +8,15 @@ from bs4 import BeautifulSoup
 from .models import Link
 
 
-# Create your views here.
 def scrape(request):
+    """
+    Django view.
+    Display main page with website form and list of links from database.
+    If request method is POST, scrape the given website and add found links to database.
+
+    :param request: Django request
+    :return: rendered result.html template
+    """
     if request.method == 'POST':
         try:
             site = 'http://' + request.POST.get('site', '')
@@ -17,6 +24,7 @@ def scrape(request):
             page = requests.get(site)
             soup = BeautifulSoup(page.text, 'html.parser')
 
+            # find all anchor tags
             for link in soup.find_all('a'):
                 link_address = link.get('href')
                 link_text = link.string
@@ -32,5 +40,13 @@ def scrape(request):
 
 
 def clear(request):
+    """
+    Django view.
+    Delete all Link objects in the database.
+
+    :param request: Django request
+    :return: rendered result.html template
+    """
+
     Link.objects.all().delete()
     return render(request, 'myapp/result.html')

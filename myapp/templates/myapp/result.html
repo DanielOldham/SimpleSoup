@@ -17,17 +17,16 @@
     </div>
 
     {% if messages %}
-        <div class="row mt-3">
-            <div class="col-8 offset-2">
-                <ul class="list-group">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <ul class="list-group">
+                {% for message in messages %}
+                <li{% if message.tags %} class="list-group-item list-group-item-danger"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
         </div>
+    </div>
     {% endif %}
-
 
     <div class="row mt-3">
         <div class="col-8 offset-2">
@@ -45,30 +44,30 @@
     </div>
 
     {% if data %}
-        <div class="row mt-3">
-            <div class="col-10 offset-1 mb-3">
-            <div class="card">
-                <table class="table table-striped">
-                    <thead class="table-primary">
+    <div class="row mt-3">
+        <div class="col-10 offset-1 mb-3">
+        <div class="card">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for link in data %}
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Link</th>
+                        <td>{{ link.id }}</td>
+                        <td>{{ link.name }}</td>
+                        <td class="text-break">{{ link.address }}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% for link in data %}
-                        <tr>
-                            <td>{{ link.id }}</td>
-                            <td>{{ link.name }}</td>
-                            <td class="text-break">{{ link.address }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            </div>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
+        </div>
+    </div>
     {% endif %}
 </body>
 </html>

@@ -1,8 +1,12 @@
 from django.db import models
 
 
-# Create your models here.
 class Link(models.Model):
+    """
+    Django model.
+    Details one link scraped from a website.
+    """
+
     def __str__(self):
         return self.name
 
