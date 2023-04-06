@@ -20,3 +20,4 @@ The project was created to practice use of the Beautiful Soup Python package in 
 <h2>Credits</h2>
 
 - Author: Daniel Oldham
+- Instructor: Professor Cody Squadroni
